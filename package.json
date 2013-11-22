@@ -21,5 +21,13 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/folktale/monad.maybe/issues"
+  },
+  "devDependencies": {
+    "hifive-tap": "~0.1.0",
+    "LiveScript": "~1.2.0",
+    "hifive": "~0.1.0",
+    "claire": "~0.4.1",
+    "groc": "~0.6.1",
+    "browserify": "~2.35.4"
   }
 }
