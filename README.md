@@ -23,7 +23,7 @@ provided for the common interface in
 ```js
 var Maybe = require('monads.maybe')
 
-// @type [a], (a -> Bool) -> Maybe(a)
+// :: [a], (a -> Bool) -> Maybe(a)
 function find(collection, predicate) {
   for (var i = 0; i < collection.length; ++i) {
     var item = collection[i]
