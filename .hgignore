@@ -1,0 +1,6 @@
+syntax: glob
+*.orig
+node_modules
+lib
+dist
+
