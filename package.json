@@ -1,5 +1,5 @@
 {
-  "name": "monad.maybe",
+  "name": "monads.maybe",
   "version": "0.1.0",
   "description": "A monad for values that may not be present.",
   "main": "index.js",
