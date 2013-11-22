@@ -2,9 +2,10 @@
   "name": "monads.maybe",
   "version": "0.1.0",
   "description": "A monad for values that may not be present.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "make test",
+    "prepublish": "make compile"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,7 @@
     "LiveScript": "~1.2.0",
     "hifive": "~0.1.0",
     "claire": "~0.4.1",
-    "groc": "~0.6.1",
-    "browserify": "~2.35.4"
+    "browserify": "~2.35.4",
+    "groc": "git://github.com/killdream/groc.git#patch-livescript"
   }
 }
