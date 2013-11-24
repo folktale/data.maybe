@@ -171,7 +171,7 @@ class Maybe
   #
   # Returns a textual representation of the `Maybe(a)` monad.
   #  
-  # + type: Unit -> String
+  # + type: (@Maybe(a)) => Unit -> String
   to-string: -> ...
 
 
@@ -202,7 +202,7 @@ class Maybe
   # Extracts the value out of the `Maybe(a)` monad. If there is no
   # value, returns the given default.
   #  
-  # + type: (@Maybe(a)) -> a -> a
+  # + type: (@Maybe(a)) => a -> a
   get-or-else: (_) -> ...
 
   # #### Function: or-else
@@ -210,7 +210,7 @@ class Maybe
   # Transforms a failure into a new `Maybe(a)` monad. Does nothing if
   # the monad already contains a value.
   #  
-  # + type: (@Maybe(a)) -> (Unit -> Maybe(a)) -> Maybe(a)
+  # + type: (@Maybe(a)) => (Unit -> Maybe(a)) -> Maybe(a)
   or-else: (_) -> ...
 
 
