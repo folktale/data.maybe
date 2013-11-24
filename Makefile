@@ -46,6 +46,10 @@ package: compile documentation bundle minify
 	cp LICENCE dist/monads.maybe-$(VERSION)
 	cd dist && tar -czf monads.maybe-$(VERSION).tar.gz monads.maybe-$(VERSION)
 
+publish: clean
+	npm install
+	npm publish
+
 bump:
 	node tools/bump-version.js $$VERSION_BUMP
 
