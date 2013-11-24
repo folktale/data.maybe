@@ -27,161 +27,223 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- * @module monads.maybe
- * @author Quildreen Motta
- * @exports Maybe
+ * @module: monads.maybe
+ * @author: Quildreen Motta
+ * @exports: Maybe
  */
 
+# The class models two different cases:
 
-# ## Trait: Applicative
-Applicative =
-  # ### Function: of
-  #
-  # Creates a new `Maybe(a)` monad with a value `a`.
-  #
-  # @type a -> Maybe(a)
-  of: (v) -> new Maybe v
+#  +  `Just a` — represents a `Maybe(a)` that contains a value. `a` may be
+#     any value, including `null` or `undefined`.
+#  +  `Nothing` — represents a `Maybe(a)` that has no values. Or a
+#     failure that needs no additional information.
 
-  # ### Function: ap
-  #
-  # Applies a function from inside of the `Maybe(a)` monad to another
-  # `Applicative` type.
-  #
-  # @type (@Maybe(a -> b), f:Applicative) => f(a) -> f(b)
-  ap: (b) -> b.map @value
+# Common uses of this monad includes modelling values that may or may
+# not be present in a collection, thus instead of needing a
+# `collection.has(a)`, the `collection.get(a)` operation gives you all
+# the information you need — `collection.get(a).is-nothing` being
+# equivalent to `collection.has(a)`; Similarly the same reasoning may be
+# applied to computations that may fail to provide a value, e.g.:
+# `collection.find(predicate)` can safely return a `Maybe(a)` instance,
+# even if the collection contains nullable values.
+
+# Furthermore, the values of `Maybe(a)` can be combined and manipulated
+# by using the expressive monadic operations. This allows safely
+# sequencing operations that may fail, and safely composing values that
+# you don't know whether they're present or not, failing early
+# (returning a `Nothing`) if any of the operations fail.
+
+# If one wants to store additional information about failures, the
+# [Either][] and [Validation][] monads provide such a capability, and
+# should be used instead of the `Maybe(a)` monad.
+
+# [Either]: https://github.com/folktale/monads.either
+# [Validation]: https://github.com/folktale/monads.validation
 
 
-# ## Trait: Functor
-Functor =
-  # ### Function: map
+# ## Class: Maybe(a)
+#
+# The `Maybe(a)` monad.
+class Maybe
+  ->
+ 
+  # ### Section: Constructors ##########################################
+
+  # #### Function: Nothing
   #
-  # Transforms the value of the `Maybe(a)` monad using a regular
+  # Constructs a new `Maybe(a)` monad with an absent value — i.e.:
+  # represents a failure.
+  #
+  # @type: Unit -> Maybe(a)
+  Nothing: -> Nothing
+
+  # #### Function: Just
+  #
+  # Constructs a new `Maybe(a)` monad that holds the single value `a`.
+  #
+  # `a` can be any value, including `null`, `undefined` or another
+  # `Maybe(a)` monad.
+  #
+  # @type: a -> Maybe(a)
+  Just: (a) -> new Just(a)
+
+  # #### Function: from-nullable
+  #
+  # Constructs a new `Maybe(a)` monad from a nullable type. If the value
+  # is either `null` or `undefined`, this function returns a `Nothing`,
+  # otherwise the value is wrapped in a `Just(a)`.
+  #
+  # @type: a -> Maybe(a)
+  from-nullable: (a) ->
+    | a? => Nothing
+    | _  => new Just(a)
+
+
+  # ### Section: Predicates ############################################
+  
+  # #### Field: is-nothing
+  #
+  # True if the `Maybe(a)` monad contains a failure (i.e.: `Nothing`).
+  #
+  # @type: Boolean
+  is-nothing: false
+
+  # #### Field: is-just
+  #
+  # True if the `Maybe(a)` monad contains a single value (i.e.:
+  # `Just(a)`).
+  #
+  # @type: Boolean
+  is-just: false
+
+
+  # ### Section: Applicative ###########################################
+
+  # #### Function: of
+  #
+  # Creates a new `Maybe(a)` monad holding the single value `a`.
+  #
+  # `a` can be any value, includding `null`, `undefined` or another
+  # `Maybe(a)` monad.
+  #
+  # @type: a -> Maybe(a)
+  of: (a) -> new Just(a)
+
+
+  # #### Function: ap
+  #
+  # Applies the function inside the `Maybe(a)` monad to another
+  # applicative type.
+  #
+  # The `Maybe(a)` monad should contain a function value, otherwise a
+  # `TypeError` is thrown.
+  #
+  # @type: (@Maybe(a -> b), f:Applicative) => f(a) -> f(b)
+  ap: (_) -> ...
+
+
+  # ### Section: Functor ###############################################
+
+  # #### Function: map
+  #
+  # Transforms the value of the `Maybe(a)` monad using a regular unary
   # function.
   #
-  # @type @Maybe(a) => (a -> b) -> Maybe(b)
-  map: (f) -> @of (f @value)
+  # @type: (@Maybe(a)) => (a -> b) -> Maybe(b)
+  map: (_) -> ...
 
 
-# ## Trait: Monad
-Monad =
-  # ### Function: chain
+  # ### Section: Chain #################################################
+
+  # #### Function: chain
   #
-  # Transforms the value of the `Maybe(a)` monad using a function to a
-  # monad of the same type.
+  # Transforms the value of the `Maybe(a)` monad using an unary function
+  # to a monad of the same type.
   #
-  # @type @Maybe(a) => (a -> Maybe(b)) -> Maybe(b)
-  chain: (f) -> f @value
+  # @type: (@Maybe(a)) => (a -> Maybe(b)) -> Maybe(b)
+  chain: (_) -> ...
 
 
-# ## Trait: Show
-Show =
-  # ### Function: to-string
+  # ### Section: Show ##################################################
+
+  # #### Function: to-string
   #
   # Returns a textual representation of the `Maybe(a)` monad.
   #
-  # @type Unit -> String
-  to-string: -> "Maybe.Just(#{@value})"
-  
+  # @type: Unit -> String
+  to-string: -> ...
 
-# ## Trait: Eq
-Eq =
-  # ### Function: is-equal
+
+  # ### Section: Eq ####################################################
+
+  # #### Function: is-equal
   #
   # Tests if a `Maybe(a)` monad is equal to another `Maybe(a)` monad.
   #
-  # @type @Maybe(a) => Maybe(a) -> Boolean
-  is-equal: (a) -> a.is-just && a.value is @value
+  # @type: (@Maybe(a)) => Maybe(a) -> Boolean
+  is-equal: (_) -> ...
 
 
-# ## Trait: Recoverable
-Recoverable =
-  # ### Function: or-else
+  # ### Section: Extracting and Recovering #############################
+
+  # #### Function: get
   #
-  # Applies a function if the `Maybe(a)` monad has no value.
+  # Extracts the value out of the `Maybe(a)` monad, if it
+  # exists. Otherwise throws a `TypeError`.
   #
-  # @type @Maybe(a) => (Unit -> Maybe(b)) -> Maybe(b)
-  or-else: (_) -> this
+  # @see: get-or-else   A getter that can handle failures.
+  # @type: (*throws, @Maybe(a)) -> a
+  get: -> ...
+
+  # #### Function: get-or-else
+  #
+  # Extracts the value out of the `Maybe(a)` monad. If there is no
+  # value, returns the given default.
+  #
+  # @type: (@Maybe(a)) -> a -> a
+  get-or-else: (_) -> ...
+
+  # #### Function: or-else
+  #
+  # Transforms a failure into a new `Maybe(a)` monad. Does nothing if
+  # the monad already contains a value.
+  #
+  # @type: (@Maybe(a)) -> (Unit -> Maybe(a)) -> Maybe(a)
+  or-else: (_) -> ...
 
 
-# ## Class: Maybe
+# ## Class: Just(a)
 #
-# The `Maybe(a)` monad.
-class Maybe \
-implements Applicative, Functor, Monad, Show, Eq, Recoverable
-  # ### Constructor
-  #
-  # Constructs a new `Maybe(a)` monad with a value `a`.
-  #
-  # @type a -> Maybe(a)
-  (a) -> @value = a
-
-  # ### Function: Nothing
-  #
-  # Constructs a new monad with an absent value.
-  #
-  # @type Unit -> Maybe(a)
-  @Nothing = -> Nothing
-
-  # ### Function: Just
-  #
-  # Constructs a new monad with one value.
-  #
-  # @type a -> Maybe(a)
-  @Just = (v) -> new Maybe v
-  
-  # ### Field: is-nothing
-  # 
-  # Tests if the Monad contains a `Nothing` — no value case..
-  #
-  # @type Boolean
-  is-nothing: false
-
-  # ### Field: is-just
-  #
-  # Tests if the Monad contains a `Just` — single value case.
-  #
-  # @type Boolean
+# Represents a `Maybe(a)` holding a value.
+class Just extends Maybe
+  (@value) ->
   is-just: true
-
-  # ### Function: get
-  #
-  # Tries to return the value in the monad, throws an error if there's
-  # no value.
-  #
-  # @type @Maybe(a) => a  :: throws Error
+  ap: (b) -> b.map @value
+  map: (f) -> @of (f @value)
+  chain: (f) -> f @value
+  to-string: -> "Maybe.Just(#{@value})"
+  is-equal: (a) -> a.is-just and (a.value is @value)
   get: -> @value
+  get-or-else: (a) -> @value
+  or-else: -> this
   
-  # ### Function: get-or-else
-  #
-  # Tries to return the value in the monad, fallsback to the given
-  # default value.
-  #
-  # @type @Maybe(a) => a -> a
-  get-or-else: (_) -> @value
 
-
-# ## Class: Nothing
+# ## Object: Nothing
 #
-# The `Nothing` case for the `Maybe(a)` monad.
+# A singleton representing a `Maybe(a)` holding no value.
 Nothing = new class extends Maybe
   ->
-  is-nothing  : true
-  is-just     : false
-
-  ap          : (b) -> b
-
-  map         : -> this
-
-  chain       : -> this
-
-  or-else     : (f) -> f!
-  get         : -> throw new Error "Can't get() the value of Nothing."
-  get-or-else : (a) -> a
-
-  to-string   : -> "Maybe.Nothing"
-
-  is-equal    : (a) -> a.is-nothing
-
+  is-nothing: true
+  ap: (b) -> b
+  map: (f) -> this
+  chain: (f) -> this
+  to-string: -> "Maybe.Nothing"
+  is-equal: (a) -> a.is-nothing
+  get: -> throw new TypeError("Can't extract the value of a Nothing")
+  get-or-else: (a) -> a
+  or-else: (f) -> f!
+  
 
 # ## Exports
-module.exports = Maybe
+module.exports = new Maybe

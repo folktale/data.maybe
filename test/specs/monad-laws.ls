@@ -35,7 +35,7 @@ Maybe = require '../../src/'
 # that argument. We also make sure that the constructor for our
 # semigroup implementation lifts the value into a non empty list, so we
 # can concatenate the values.
-make = (a) -> new Maybe a
+make = (a) -> Maybe.Just a
 
 # Then we provide the specification for the test runner. As we're using
 # Hifive here, it expects that each definition for the specification to
