@@ -46,5 +46,13 @@ package: compile documentation bundle minify
 	cp LICENCE dist/monads.maybe-$(VERSION)
 	cd dist && tar -czf monads.maybe-$(VERSION).tar.gz monads.maybe-$(VERSION)
 
+bump:
+	node tools/bump-version.js $$VERSION_BUMP
+
+bump-feature:
+	VERSION_BUMP=FEATURE $(MAKE) bump
+
+bump-major:
+	VERSION_BUMP=MAJOR $(MAKE) bump
 
 .PHONY: test
