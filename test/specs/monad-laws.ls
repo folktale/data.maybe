@@ -35,8 +35,7 @@ Maybe = require '../../src/'
 # that argument. We also make sure that the constructor for our
 # semigroup implementation lifts the value into a non empty list, so we
 # can concatenate the values.
-make     = (a) -> new Maybe a
-make-nel = (a) -> new Maybe [a]
+make = (a) -> new Maybe a
 
 # Then we provide the specification for the test runner. As we're using
 # Hifive here, it expects that each definition for the specification to
@@ -45,13 +44,6 @@ make-nel = (a) -> new Maybe [a]
 # Mocha & other testing libraries) expect.
 module.exports = spec 'Algebraic laws' (o, spec) ->
 
-  spec ': Semigroup' (o) ->
-    o '1. Associativity' laws.semigroup.associativity(make-nel).as-test!
-
-  spec ': Monoid' (o) ->
-    o '1. Right identity' laws.monoid.right-identity(make).as-test!
-    o '2. Left identity'  laws.monoid.left-identity(make).as-test!
- 
   spec ': Functor' (o) ->
     o '1. Identity'     laws.functor.identity(make).as-test!
     o '2. Composition'  laws.functor.composition(make).as-test!
