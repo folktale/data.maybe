@@ -1,6 +1,6 @@
 {
   "name": "monads.maybe",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A monad for values that may not be available or computations that may fail.",
   "main": "lib/index.js",
   "scripts": {
