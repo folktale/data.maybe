@@ -96,8 +96,8 @@ class Maybe
   #  
   # + type: a -> Maybe(a)
   from-nullable: (a) ->
-    | a? => Nothing
-    | _  => new Just(a)
+    | a? => new Just(a)
+    | _  => Nothing
 
 
   # ### Section: Predicates ############################################
