@@ -193,7 +193,7 @@ class Maybe
   # exists. Otherwise throws a `TypeError`.
   #  
   # + see: get-or-else — A getter that can handle failures.
-  # + type: (@Maybe(a), *throws) -> a
+  # + type: (@Maybe(a), *throws) => Unit -> a
   # + throws: TypeError — if the monad has no value (`Nothing`).
   get: -> ...
 
