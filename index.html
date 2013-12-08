@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><title>index</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="index"><meta name="groc-project-path" content="README.md"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">README.md</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="monads-maybe">Monads: Maybe</h1>
+<!DOCTYPE html><html lang="en"><head><title>index</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="index"><meta name="groc-project-path" content="README.md"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Arvo|PT+Sans"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">README.md</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="monads-maybe">Monads: Maybe</h1>
 
 <p><a href="https://travis-ci.org/folktale/monads.maybe"><img src="https://secure.travis-ci.org/folktale/monads.maybe.png?branch=master" alt="Build Status" title="" /></a>
 <a href="http://badge.fury.io/js/monads.maybe"><img src="https://badge.fury.io/js/monads.maybe.png" alt="NPM version" title="" /></a>
@@ -32,7 +32,8 @@ var numbers = [-2, -1, 0, 1, 2]
 var a = find(numbers, function(a){ return a &gt; 5 })
 var b = find(numbers, function(a){ return a === 0 })
 
-// Call a function only if both a and b have values (sequencing)
+// Call a function only if both a and b
+// have values (sequencing)
 a.chain(function(x) {
   return b.chain(function(y) {
     doSomething(x, y)
@@ -40,25 +41,29 @@ a.chain(function(x) {
 })
 
 // Transform values only if they're available:
-a.map(function(x){ return x + 1 })  // Maybe.Nothing
-b.map(function(x){ return x + 1 })  // Maybe.Just(1)
+a.map(function(x){ return x + 1 })
+// =&gt; Maybe.Nothing
+b.map(function(x){ return x + 1 })
+// =&gt; Maybe.Just(1)
 
 // Use a default value if no value is present
-a.orElse(function(){ return Maybe.Just(-1) })   // Maybe.Just(-1)
-b.orElse(function(){ return Maybe.Just(-1) })   // Maybe.Just(0)
+a.orElse(function(){ return Maybe.Just(-1) })
+// =&gt; Maybe.Just(-1)
+b.orElse(function(){ return Maybe.Just(-1) })
+// =&gt; Maybe.Just(0)
 </code></pre>
 
 <h2 id="installing">Installing</h2>
 
 <p>The easiest way is to grab it from NPM. If you're running in a Browser
-environment, you can use <a href="http://browserify.org/">Browserify</a></p>
+environment, you can use <a href="http://browserify.org/">Browserify</a>:</p>
 
 <pre><code>$ npm install monads.maybe
 </code></pre>
 
 <h3 id="using-with-commonjs">Using with CommonJS</h3>
 
-<p>If you're not using NPM, <a href="https://github.com/folktale/monads.maybe/releases/download/v0.0.0/monads.maybe-0.0.0.tar.gz">Download the latest release</a>, and require
+<p>If you're not using NPM, <a href="https://github.com/folktale/monads.maybe/releases/download/v0.3.0/monads.maybe-0.3.0.tar.gz">Download the latest release</a>, and require
 the <code>monads.maybe.umd.js</code> file:</p>
 
 <pre><code class="js">var Maybe = require('monads.maybe')
@@ -66,7 +71,7 @@ the <code>monads.maybe.umd.js</code> file:</p>
 
 <h3 id="using-with-amd">Using with AMD</h3>
 
-<p><a href="https://github.com/folktale/monads.maybe/releases/download/v0.0.0/monads.maybe-0.0.0.tar.gz">Download the latest release</a>, and require the <code>monads.maybe.umd.js</code>
+<p><a href="https://github.com/folktale/monads.maybe/releases/download/v0.3.0/monads.maybe-0.3.0.tar.gz">Download the latest release</a>, and require the <code>monads.maybe.umd.js</code>
 file:</p>
 
 <pre><code class="js">require(['monads.maybe'], function(Maybe) {
@@ -76,8 +81,8 @@ file:</p>
 
 <h3 id="using-without-modules">Using without modules</h3>
 
-<p><a href="https://github.com/folktale/monads.maybe/releases/download/v0.0.0/monads.maybe-0.0.0.tar.gz">Download the latest release</a>, and load the <code>monads.maybe.umd.js</code>
-file. The properties are exposed in the global <code>Maybe</code> object:</p>
+<p><a href="https://github.com/folktale/monads.maybe/releases/download/v0.3.0/monads.maybe-0.3.0.tar.gz">Download the latest release</a>, and load the <code>monads.maybe.umd.js</code>
+file. The properties are exposed in the global <code>folktale.monads.Maybe</code> object:</p>
 
 <pre><code class="html">&lt;script src="/path/to/monads.maybe.umd.js"&gt;&lt;/script&gt;
 </code></pre>

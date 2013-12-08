@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><title>src/index</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="src/index"><meta name="groc-project-path" content="src/index.ls"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/index.ls</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="monad-maybea">Monad: Maybe(a)</h1>
+<!DOCTYPE html><html lang="en"><head><title>src/index</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="src/index"><meta name="groc-project-path" content="src/index.ls"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Arvo|PT+Sans"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/index.ls</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="monad-maybea">Monad: Maybe(a)</h1>
 
 <p>A Monad for values that may not be present, or computations that may
 fail. <code>Maybe(a)</code> explicitly models the effects that are implicit in
@@ -24,33 +24,37 @@ or <code>undefined</code> — like <code>NullPointerExceptions</code>.</p></div>
 <span class="cm"> * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION</span>
 <span class="cm"> * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION</span>
 <span class="cm"> * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</span>
-<span class="cm"> *</span>
-<span class="cm"> * + module: monads.maybe</span>
-<span class="cm"> * + author: Quildreen Motta</span>
-<span class="cm"> * + exports: Maybe</span>
-<span class="cm"> */</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The class models two different cases:</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><ul>
+<span class="cm"> */</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The class models two different cases:</p>
+
+<ul>
 <li><code>Just a</code> — represents a <code>Maybe(a)</code> that contains a value. <code>a</code> may be
 any value, including <code>null</code> or <code>undefined</code>.</li>
 <li><code>Nothing</code> — represents a <code>Maybe(a)</code> that has no values. Or a
 failure that needs no additional information.</li>
-</ul></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Common uses of this monad includes modelling values that may or may
+</ul>
+
+<p>Common uses of this monad includes modelling values that may or may
 not be present in a collection, thus instead of needing a
 <code>collection.has(a)</code>, the <code>collection.get(a)</code> operation gives you all
 the information you need — <code>collection.get(a).is-nothing</code> being
 equivalent to <code>collection.has(a)</code>; Similarly the same reasoning may be
 applied to computations that may fail to provide a value, e.g.:
 <code>collection.find(predicate)</code> can safely return a <code>Maybe(a)</code> instance,
-even if the collection contains nullable values.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Furthermore, the values of <code>Maybe(a)</code> can be combined and manipulated
+even if the collection contains nullable values.</p>
+
+<p>Furthermore, the values of <code>Maybe(a)</code> can be combined and manipulated
 by using the expressive monadic operations. This allows safely
 sequencing operations that may fail, and safely composing values that
 you don't know whether they're present or not, failing early
-(returning a <code>Nothing</code>) if any of the operations fail.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>If one wants to store additional information about failures, the
-[Either][] and [Validation][] monads provide such a capability, and
-should be used instead of the <code>Maybe(a)</code> monad.</p></div></div></div><div class="segment"></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="class-maybea">Class: Maybe(a)</h2>
+(returning a <code>Nothing</code>) if any of the operations fail.</p>
+
+<p>If one wants to store additional information about failures, the
+<a href="https://github.com/folktale/monads.either">Either</a> and <a href="https://github.com/folktale/monads.validation">Validation</a> monads provide such a capability, and
+should be used instead of the <code>Maybe(a)</code> monad.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="class-maybea">Class: Maybe(a)</h2>
 
 <p>The <code>Maybe(a)</code> monad.</p></div></div><div class="code"><div class="wrapper"><span class="k">class</span> <span class="nx">Maybe</span>
   <span class="nf">-&gt;</span>
- </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="section-constructors">Section: Constructors</h3></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h4 id="function-nothing">Function: Nothing</h4>
+ </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="constructors">Constructors</h3></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h4 id="function-nothing">Function: Nothing</h4>
 
 <p>Constructs a new <code>Maybe(a)</code> monad with an absent value — i.e.:
 represents a failure.</p>
@@ -74,8 +78,8 @@ otherwise the value is wrapped in a <code>Just(a)</code>.</p>
 <ul>
 <li>type: a -> Maybe(a)</li>
 </ul></div></div><div class="code"><div class="wrapper">  <span class="nv">from-nullable: </span><span class="nf">(a) -&gt;</span>
-    <span class="o">|</span> <span class="nx">a</span><span class="o">?</span> <span class="o">=&gt;</span> <span class="nx">Nothing</span>
-    <span class="o">|</span> <span class="nx">_</span>  <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">Just</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="section-predicates">Section: Predicates</h3></div></div><div class="code"><div class="wrapper">  </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h4 id="field-is-nothing">Field: is-nothing</h4>
+    <span class="o">|</span> <span class="nx">a</span><span class="o">?</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">Just</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+    <span class="o">|</span> <span class="nx">_</span>  <span class="o">=&gt;</span> <span class="nx">Nothing</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="predicates">Predicates</h3></div></div><div class="code"><div class="wrapper">  </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h4 id="field-is-nothing">Field: is-nothing</h4>
 
 <p>True if the <code>Maybe(a)</code> monad contains a failure (i.e.: <code>Nothing</code>).</p>
 
@@ -88,7 +92,7 @@ otherwise the value is wrapped in a <code>Just(a)</code>.</p>
 
 <ul>
 <li>type: Boolean</li>
-</ul></div></div><div class="code"><div class="wrapper">  <span class="o">is-</span><span class="nv">just: </span><span class="kc">false</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="section-applicative">Section: Applicative</h3></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h4 id="function-of">Function: of</h4>
+</ul></div></div><div class="code"><div class="wrapper">  <span class="o">is-</span><span class="nv">just: </span><span class="kc">false</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="applicative">Applicative</h3></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h4 id="function-of">Function: of</h4>
 
 <p>Creates a new <code>Maybe(a)</code> monad holding the single value <code>a</code>.</p>
 
@@ -107,40 +111,40 @@ applicative type.</p>
 
 <ul>
 <li>type: (@Maybe(a -> b), f:Applicative) => f(a) -> f(b)</li>
-</ul></div></div><div class="code"><div class="wrapper">  <span class="nv">ap: </span><span class="nf">(_) -&gt;</span> <span class="p">...</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="section-functor">Section: Functor</h3></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h4 id="function-map">Function: map</h4>
+</ul></div></div><div class="code"><div class="wrapper">  <span class="nv">ap: </span><span class="nf">(_) -&gt;</span> <span class="p">...</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="functor">Functor</h3></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h4 id="function-map">Function: map</h4>
 
 <p>Transforms the value of the <code>Maybe(a)</code> monad using a regular unary
 function.</p>
 
 <ul>
 <li>type: (@Maybe(a)) => (a -> b) -> Maybe(b)</li>
-</ul></div></div><div class="code"><div class="wrapper">  <span class="nv">map: </span><span class="nf">(_) -&gt;</span> <span class="p">...</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="section-chain">Section: Chain</h3></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h4 id="function-chain">Function: chain</h4>
+</ul></div></div><div class="code"><div class="wrapper">  <span class="nv">map: </span><span class="nf">(_) -&gt;</span> <span class="p">...</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="chain">Chain</h3></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h4 id="function-chain">Function: chain</h4>
 
 <p>Transforms the value of the <code>Maybe(a)</code> monad using an unary function
 to a monad of the same type.</p>
 
 <ul>
 <li>type: (@Maybe(a)) => (a -> Maybe(b)) -> Maybe(b)</li>
-</ul></div></div><div class="code"><div class="wrapper">  <span class="nv">chain: </span><span class="nf">(_) -&gt;</span> <span class="p">...</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="section-show">Section: Show</h3></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h4 id="function-to-string">Function: to-string</h4>
+</ul></div></div><div class="code"><div class="wrapper">  <span class="nv">chain: </span><span class="nf">(_) -&gt;</span> <span class="p">...</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="show">Show</h3></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h4 id="function-to-string">Function: to-string</h4>
 
 <p>Returns a textual representation of the <code>Maybe(a)</code> monad.</p>
 
 <ul>
-<li>type: Unit -> String</li>
-</ul></div></div><div class="code"><div class="wrapper">  <span class="k">to</span><span class="o">-</span><span class="nv">string: </span><span class="nf">-&gt;</span> <span class="p">...</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="section-eq">Section: Eq</h3></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h4 id="function-is-equal">Function: is-equal</h4>
+<li>type: (@Maybe(a)) => Unit -> String</li>
+</ul></div></div><div class="code"><div class="wrapper">  <span class="k">to</span><span class="o">-</span><span class="nv">string: </span><span class="nf">-&gt;</span> <span class="p">...</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="eq">Eq</h3></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h4 id="function-is-equal">Function: is-equal</h4>
 
 <p>Tests if a <code>Maybe(a)</code> monad is equal to another <code>Maybe(a)</code> monad.</p>
 
 <ul>
 <li>type: (@Maybe(a)) => Maybe(a) -> Boolean</li>
-</ul></div></div><div class="code"><div class="wrapper">  <span class="o">is-</span><span class="nv">equal: </span><span class="nf">(_) -&gt;</span> <span class="p">...</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="section-extracting-and-recovering">Section: Extracting and Recovering</h3></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h4 id="function-get">Function: get</h4>
+</ul></div></div><div class="code"><div class="wrapper">  <span class="o">is-</span><span class="nv">equal: </span><span class="nf">(_) -&gt;</span> <span class="p">...</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="extracting-and-recovering">Extracting and Recovering</h3></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h4 id="function-get">Function: get</h4>
 
 <p>Extracts the value out of the <code>Maybe(a)</code> monad, if it
 exists. Otherwise throws a <code>TypeError</code>.</p>
 
 <ul>
 <li>see: get-or-else — A getter that can handle failures.</li>
-<li>type: (@Maybe(a), *throws) -> a</li>
+<li>type: (@Maybe(a), *throws) => Unit -> a</li>
 <li>throws: TypeError — if the monad has no value (<code>Nothing</code>).</li>
 </ul></div></div><div class="code"><div class="wrapper">  <span class="nv">get: </span><span class="nf">-&gt;</span> <span class="p">...</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h4 id="function-get-or-else">Function: get-or-else</h4>
 
@@ -148,14 +152,14 @@ exists. Otherwise throws a <code>TypeError</code>.</p>
 value, returns the given default.</p>
 
 <ul>
-<li>type: (@Maybe(a)) -> a -> a</li>
+<li>type: (@Maybe(a)) => a -> a</li>
 </ul></div></div><div class="code"><div class="wrapper">  <span class="nv">get-or-else: </span><span class="nf">(_) -&gt;</span> <span class="p">...</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h4 id="function-or-else">Function: or-else</h4>
 
 <p>Transforms a failure into a new <code>Maybe(a)</code> monad. Does nothing if
 the monad already contains a value.</p>
 
 <ul>
-<li>type: (@Maybe(a)) -> (Unit -> Maybe(a)) -> Maybe(a)</li>
+<li>type: (@Maybe(a)) => (Unit -> Maybe(a)) -> Maybe(a)</li>
 </ul></div></div><div class="code"><div class="wrapper">  <span class="o">or-</span><span class="k">else</span><span class="o">:</span> <span class="nf">(_) -&gt;</span> <span class="p">...</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="class-justa">Class: Just(a)</h2>
 
 <p>Represents a <code>Maybe(a)</code> holding a value.</p></div></div><div class="code"><div class="wrapper"><span class="k">class</span> <span class="nx">Just</span> <span class="k">extends</span> <span class="nx">Maybe</span>
