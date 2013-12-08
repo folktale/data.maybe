@@ -36,7 +36,8 @@ var numbers = [-2, -1, 0, 1, 2]
 var a = find(numbers, function(a){ return a > 5 })
 var b = find(numbers, function(a){ return a === 0 })
 
-// Call a function only if both a and b have values (sequencing)
+// Call a function only if both a and b
+// have values (sequencing)
 a.chain(function(x) {
   return b.chain(function(y) {
     doSomething(x, y)

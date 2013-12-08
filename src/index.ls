@@ -26,19 +26,15 @@
  * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *
- * + module: monads.maybe
- * + author: Quildreen Motta
- * + exports: Maybe
  */
 
 # The class models two different cases:
-
+#  
 #  +  `Just a` — represents a `Maybe(a)` that contains a value. `a` may be
 #     any value, including `null` or `undefined`.
 #  +  `Nothing` — represents a `Maybe(a)` that has no values. Or a
 #     failure that needs no additional information.
-
+#  
 # Common uses of this monad includes modelling values that may or may
 # not be present in a collection, thus instead of needing a
 # `collection.has(a)`, the `collection.get(a)` operation gives you all
@@ -47,17 +43,17 @@
 # applied to computations that may fail to provide a value, e.g.:
 # `collection.find(predicate)` can safely return a `Maybe(a)` instance,
 # even if the collection contains nullable values.
-
+#  
 # Furthermore, the values of `Maybe(a)` can be combined and manipulated
 # by using the expressive monadic operations. This allows safely
 # sequencing operations that may fail, and safely composing values that
 # you don't know whether they're present or not, failing early
 # (returning a `Nothing`) if any of the operations fail.
-
+#  
 # If one wants to store additional information about failures, the
 # [Either][] and [Validation][] monads provide such a capability, and
 # should be used instead of the `Maybe(a)` monad.
-
+#  
 # [Either]: https://github.com/folktale/monads.either
 # [Validation]: https://github.com/folktale/monads.validation
 
@@ -68,7 +64,7 @@
 class Maybe
   ->
  
-  # ### Section: Constructors ##########################################
+  # ### Constructors ###################################################
 
   # #### Function: Nothing
   #
@@ -100,7 +96,7 @@ class Maybe
     | _  => Nothing
 
 
-  # ### Section: Predicates ############################################
+  # ### Predicates #####################################################
   
   # #### Field: is-nothing
   #
@@ -118,7 +114,7 @@ class Maybe
   is-just: false
 
 
-  # ### Section: Applicative ###########################################
+  # ### Applicative ####################################################
 
   # #### Function: of
   #
@@ -143,7 +139,7 @@ class Maybe
   ap: (_) -> ...
 
 
-  # ### Section: Functor ###############################################
+  # ### Functor ########################################################
 
   # #### Function: map
   #
@@ -154,7 +150,7 @@ class Maybe
   map: (_) -> ...
 
 
-  # ### Section: Chain #################################################
+  # ### Chain ##########################################################
 
   # #### Function: chain
   #
@@ -165,7 +161,7 @@ class Maybe
   chain: (_) -> ...
 
 
-  # ### Section: Show ##################################################
+  # ### Show ###########################################################
 
   # #### Function: to-string
   #
@@ -175,7 +171,7 @@ class Maybe
   to-string: -> ...
 
 
-  # ### Section: Eq ####################################################
+  # ### Eq #############################################################
 
   # #### Function: is-equal
   #
@@ -185,7 +181,7 @@ class Maybe
   is-equal: (_) -> ...
 
 
-  # ### Section: Extracting and Recovering #############################
+  # ### Extracting and Recovering ######################################
 
   # #### Function: get
   #
