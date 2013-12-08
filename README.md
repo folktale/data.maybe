@@ -44,19 +44,23 @@ a.chain(function(x) {
 })
 
 // Transform values only if they're available:
-a.map(function(x){ return x + 1 })  // Maybe.Nothing
-b.map(function(x){ return x + 1 })  // Maybe.Just(1)
+a.map(function(x){ return x + 1 })
+// => Maybe.Nothing
+b.map(function(x){ return x + 1 })
+// => Maybe.Just(1)
 
 // Use a default value if no value is present
-a.orElse(function(){ return Maybe.Just(-1) })   // Maybe.Just(-1)
-b.orElse(function(){ return Maybe.Just(-1) })   // Maybe.Just(0)
+a.orElse(function(){ return Maybe.Just(-1) })
+// => Maybe.Just(-1)
+b.orElse(function(){ return Maybe.Just(-1) })
+// => Maybe.Just(0)
 ```
 
 
 ## Installing
 
 The easiest way is to grab it from NPM. If you're running in a Browser
-environment, you can use [Browserify][]
+environment, you can use [Browserify][]:
 
     $ npm install monads.maybe
 
@@ -86,7 +90,7 @@ require(['monads.maybe'], function(Maybe) {
 ### Using without modules
 
 [Download the latest release][release], and load the `monads.maybe.umd.js`
-file. The properties are exposed in the global `Maybe` object:
+file. The properties are exposed in the global `folktale.monads.Maybe` object:
 
 ```html
 <script src="/path/to/monads.maybe.umd.js"></script>
@@ -102,11 +106,11 @@ If you want to compile this library from the source, you'll need [Git][],
     $ cd monads.maybe
     $ npm install
     $ make bundle
-    
+
 This will generate the `dist/monads.maybe.umd.js` file, which you can load in
 any JavaScript environment.
 
-    
+
 ## Documentation
 
 You can [read the documentation online][docs] or build it yourself:
