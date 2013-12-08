@@ -13,7 +13,7 @@ dist:
 	mkdir -p dist
 
 dist/monads.maybe.umd.js: compile dist
-	$(browserify) lib/index.js --standalone Maybe > $@
+	$(browserify) lib/index.js --standalone folktale.monads.Maybe > $@
 
 dist/monads.maybe.umd.min.js: dist/monads.maybe.umd.js
 	$(uglify) --mangle - < $^ > $@
