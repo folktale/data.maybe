@@ -139,7 +139,7 @@ Released under the [MIT licence](https://github.com/folktale/monads.maybe/blob/m
 <!-- links -->
 [Fantasy Land]: https://github.com/fantasyland/fantasy-land
 [Browserify]: http://browserify.org/
-[release]: https://github.com/folktale/monads.maybe/releases/download/v0.2.1/monads.maybe-0.2.1.tar.gz
+[release]: https://github.com/folktale/monads.maybe/releases/download/v0.3.0/monads.maybe-0.3.0.tar.gz
 [Git]: http://git-scm.com/
 [Make]: http://www.gnu.org/software/make/
 [Node.js]: http://nodejs.org/
