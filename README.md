@@ -4,7 +4,7 @@ Monads: Maybe
 [![Build Status](https://secure.travis-ci.org/folktale/data.maybe.png?branch=master)](https://travis-ci.org/folktale/data.maybe)
 [![NPM version](https://badge.fury.io/js/data.maybe.png)](http://badge.fury.io/js/data.maybe)
 [![Dependencies Status](https://david-dm.org/folktale/data.maybe.png)](https://david-dm.org/folktale/data.maybe)
-[![experimental](http://hughsk.github.io/stability-badges/dist/experimental.svg)](http://github.com/hughsk/stability-badges)
+[![stable](http://hughsk.github.io/stability-badges/dist/stable.svg)](http://github.com/hughsk/stability-badges)
 
 
 A Monad for values that may not be present, or computations that may
