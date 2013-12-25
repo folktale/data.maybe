@@ -13,7 +13,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "commentsOnly": true,
           "name": "Markdown"
         },
-        "sourcePath": "/home/queen/Projects/folktale/monads/maybe/README.md",
+        "sourcePath": "/home/queen/Projects/folktale/data/maybe/README.md",
         "projectPath": "README.md",
         "targetPath": "index",
         "pageTitle": "index",
@@ -21,8 +21,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "heading",
           "data": {
             "level": 1,
-            "title": "Monads: Maybe",
-            "slug": "monads-maybe",
+            "title": "The Maybe monad",
+            "slug": "the-maybe-monad",
             "isFileHeader": true
           },
           "depth": 1,
@@ -105,7 +105,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             }
           ]
         },
-        "title": "Monads: Maybe"
+        "title": "The Maybe monad"
       },
       "depth": 1,
       "outline": [
@@ -206,7 +206,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "LiveScript"
             },
-            "sourcePath": "/home/queen/Projects/folktale/monads/maybe/src/index.ls",
+            "sourcePath": "/home/queen/Projects/folktale/data/maybe/src/index.ls",
             "projectPath": "src/index.ls",
             "targetPath": "src/index",
             "pageTitle": "src/index",
@@ -729,7 +729,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "LiveScript"
                 },
-                "sourcePath": "/home/queen/Projects/folktale/monads/maybe/test/specs/index.ls",
+                "sourcePath": "/home/queen/Projects/folktale/data/maybe/test/specs/index.ls",
                 "projectPath": "test/specs/index.ls",
                 "targetPath": "test/specs/index",
                 "pageTitle": "test/specs/index",
@@ -759,7 +759,37 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "LiveScript"
                 },
-                "sourcePath": "/home/queen/Projects/folktale/monads/maybe/test/specs/monad-laws.ls",
+                "sourcePath": "/home/queen/Projects/folktale/data/maybe/test/specs/maybe.ls",
+                "projectPath": "test/specs/maybe.ls",
+                "targetPath": "test/specs/maybe",
+                "pageTitle": "test/specs/maybe",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "Tests for the Maybe structure",
+                    "slug": "tests-for-the-maybe-structure",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "Tests for the Maybe structure"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".ls", "Slakefile"],
+                  "pygmentsLexer": "livescript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["#"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "LiveScript"
+                },
+                "sourcePath": "/home/queen/Projects/folktale/data/maybe/test/specs/monad-laws.ls",
                 "projectPath": "test/specs/monad-laws.ls",
                 "targetPath": "test/specs/monad-laws",
                 "pageTitle": "test/specs/monad-laws",
@@ -791,7 +821,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "LiveScript"
             },
-            "sourcePath": "/home/queen/Projects/folktale/monads/maybe/test/tap.ls",
+            "sourcePath": "/home/queen/Projects/folktale/data/maybe/test/tap.ls",
             "projectPath": "test/tap.ls",
             "targetPath": "test/tap",
             "pageTitle": "test/tap",
