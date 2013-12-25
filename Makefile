@@ -12,16 +12,16 @@ lib: src/*.ls
 dist:
 	mkdir -p dist
 
-dist/monads.maybe.umd.js: compile dist
-	$(browserify) lib/index.js --standalone folktale.monads.Maybe > $@
+dist/data.maybe.umd.js: compile dist
+	$(browserify) lib/index.js --standalone folktale.data.Maybe > $@
 
-dist/monads.maybe.umd.min.js: dist/monads.maybe.umd.js
+dist/data.maybe.umd.min.js: dist/data.maybe.umd.js
 	$(uglify) --mangle - < $^ > $@
 
 # ----------------------------------------------------------------------
-bundle: dist/monads.maybe.umd.js
+bundle: dist/data.maybe.umd.js
 
-minify: dist/monads.maybe.umd.min.js
+minify: dist/data.maybe.umd.min.js
 
 compile: lib
 
@@ -37,14 +37,14 @@ test:
 	$(lsc) test/tap.ls
 
 package: compile documentation bundle minify
-	mkdir -p dist/monads.maybe-$(VERSION)
-	cp -r docs/literate dist/monads.maybe-$(VERSION)/docs
-	cp -r lib dist/monads.maybe-$(VERSION)
-	cp dist/*.js dist/monads.maybe-$(VERSION)
-	cp package.json dist/monads.maybe-$(VERSION)
-	cp README.md dist/monads.maybe-$(VERSION)
-	cp LICENCE dist/monads.maybe-$(VERSION)
-	cd dist && tar -czf monads.maybe-$(VERSION).tar.gz monads.maybe-$(VERSION)
+	mkdir -p dist/data.maybe-$(VERSION)
+	cp -r docs/literate dist/data.maybe-$(VERSION)/docs
+	cp -r lib dist/data.maybe-$(VERSION)
+	cp dist/*.js dist/data.maybe-$(VERSION)
+	cp package.json dist/data.maybe-$(VERSION)
+	cp README.md dist/data.maybe-$(VERSION)
+	cp LICENCE dist/data.maybe-$(VERSION)
+	cd dist && tar -czf data.maybe-$(VERSION).tar.gz data.maybe-$(VERSION)
 
 publish: clean
 	npm install

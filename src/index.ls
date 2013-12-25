@@ -54,8 +54,8 @@
 # [Either][] and [Validation][] monads provide such a capability, and
 # should be used instead of the `Maybe(a)` monad.
 #  
-# [Either]: https://github.com/folktale/monads.either
-# [Validation]: https://github.com/folktale/monads.validation
+# [Either]: https://github.com/folktale/data.either
+# [Validation]: https://github.com/folktale/data.validation
 
 
 # ## Class: Maybe(a)

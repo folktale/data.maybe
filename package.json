@@ -1,6 +1,6 @@
 {
-  "name": "monads.maybe",
-  "version": "0.3.0",
+  "name": "data.maybe",
+  "version": "0.4.0",
   "description": "A monad for values that may not be available or computations that may fail.",
   "main": "lib/index.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/folktale/monads.maybe"
+    "url": "https://github.com/folktale/data.maybe"
   },
   "keywords": [
     "monads",
@@ -21,9 +21,11 @@
   "author": "Quildreen Motta",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/folktale/monads.maybe/issues"
+    "url": "https://github.com/folktale/data.maybe/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "claire": "~0.4.1"
+  },
   "devDependencies": {
     "browserify": "git://github.com/robotlolita/node-browserify",
     "groc": "git://github.com/robotlolita/groc#typography",
