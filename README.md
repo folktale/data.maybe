@@ -145,5 +145,5 @@ Released under the [MIT licence](https://github.com/folktale/data.maybe/blob/mas
 [es5-shim]: https://github.com/kriskowal/es5-shim
 [docs]: http://folktale.github.io/data.maybe
 <!-- [release: https://github.com/folktale/data.maybe/releases/download/v$VERSION/data.maybe-$VERSION.tar.gz] -->
-[release]: https://github.com/folktale/data.maybe/releases/download/v0.4.0/data.maybe-0.4.0.tar.gz
+[release]: https://github.com/folktale/data.maybe/releases/download/v1.0.0/data.maybe-1.0.0.tar.gz
 <!-- [/release] -->
