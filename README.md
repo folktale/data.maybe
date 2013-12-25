@@ -1,5 +1,5 @@
-Monads: Maybe
-=============
+The Maybe monad
+===============
 
 [![Build Status](https://secure.travis-ci.org/folktale/data.maybe.png?branch=master)](https://travis-ci.org/folktale/data.maybe)
 [![NPM version](https://badge.fury.io/js/data.maybe.png)](http://badge.fury.io/js/data.maybe)
