@@ -1,6 +1,6 @@
 # # Monad: Maybe(a)
 #
-# A Monad for values that may not be present, or computations that may
+# A structure for values that may not be present, or computations that may
 # fail. `Maybe(a)` explicitly models the effects that are implicit in
 # `Nullable` types, thus has none of the problems associated with `null`
 # or `undefined` — like `NullPointerExceptions`.
@@ -35,7 +35,7 @@
 #  +  `Nothing` — represents a `Maybe(a)` that has no values. Or a
 #     failure that needs no additional information.
 #  
-# Common uses of this monad includes modelling values that may or may
+# Common uses of this structure includes modelling values that may or may
 # not be present in a collection, thus instead of needing a
 # `collection.has(a)`, the `collection.get(a)` operation gives you all
 # the information you need — `collection.get(a).is-nothing` being
@@ -51,8 +51,8 @@
 # (returning a `Nothing`) if any of the operations fail.
 #  
 # If one wants to store additional information about failures, the
-# [Either][] and [Validation][] monads provide such a capability, and
-# should be used instead of the `Maybe(a)` monad.
+# [Either][] and [Validation][] structures provide such a capability, and
+# should be used instead of the `Maybe(a)` structure.
 #  
 # [Either]: https://github.com/folktale/data.either
 # [Validation]: https://github.com/folktale/data.validation
