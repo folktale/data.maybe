@@ -38,7 +38,7 @@ test:
 
 package: documentation bundle minify
 	mkdir -p dist/data.maybe-$(VERSION)
-	cp -r docs/literate dist/data.maybe-$(VERSION)/docs
+	cp -r docs dist/data.maybe-$(VERSION)
 	cp -r lib dist/data.maybe-$(VERSION)
 	cp dist/*.js dist/data.maybe-$(VERSION)
 	cp package.json dist/data.maybe-$(VERSION)
