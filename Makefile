@@ -1,18 +1,15 @@
 bin        = $(shell npm bin)
 lsc        = $(bin)/lsc
 browserify = $(bin)/browserify
-groc       = $(bin)/groc
+jsdoc      = $(bin)/jsdoc
 uglify     = $(bin)/uglifyjs
 VERSION    = $(shell node -e 'console.log(require("./package.json").version)')
 
 
-lib: src/*.ls
-	$(lsc) -o lib -c src/*.ls
-
 dist:
 	mkdir -p dist
 
-dist/data.maybe.umd.js: compile dist
+dist/data.maybe.umd.js: dist
 	$(browserify) lib/index.js --standalone folktale.data.Maybe > $@
 
 dist/data.maybe.umd.min.js: dist/data.maybe.umd.js
@@ -23,20 +20,23 @@ bundle: dist/data.maybe.umd.js
 
 minify: dist/data.maybe.umd.min.js
 
-compile: lib
+dev-tools:
+	npm install
 
 documentation:
-	$(groc) --index "README.md"                                              \
-	        --out "docs/literate"                                            \
-	        src/*.ls test/*.ls test/specs/**.ls README.md
+	$(jsdoc) --configure jsdoc.conf.json
+	ABSPATH=$(shell cd "$(dirname "$0")"; pwd) $(MAKE) clean-docs
+
+clean-docs:
+	perl -pi -e "s?$$ABSPATH/??g" ./docs/*.html
 
 clean:
-	rm -rf dist build lib
+	rm -rf dist build
 
 test:
 	$(lsc) test/tap.ls
 
-package: compile documentation bundle minify
+package: documentation bundle minify
 	mkdir -p dist/data.maybe-$(VERSION)
 	cp -r docs/literate dist/data.maybe-$(VERSION)/docs
 	cp -r lib dist/data.maybe-$(VERSION)
@@ -59,4 +59,5 @@ bump-feature:
 bump-major:
 	VERSION_BUMP=MAJOR $(MAKE) bump
 
-.PHONY: test
+
+.PHONY: test bump bump-major bump-feature documentation publish clean
