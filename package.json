@@ -1,6 +1,6 @@
 {
   "name": "data.maybe",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A monad for values that may not be available or computations that may fail.",
   "main": "lib/index.js",
   "scripts": {
@@ -24,7 +24,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "browserify": "git://github.com/robotlolita/node-browserify",
+    "browserify": "^3.38.0",
     "LiveScript": "~1.2.0",
     "hifive-tap": "~0.1.0",
     "hifive": "~0.1.0",
