@@ -1,23 +1,105 @@
-<!DOCTYPE html><html lang="en"><head><title>index</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="index"><meta name="groc-project-path" content="README.md"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Arvo|PT+Sans"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">README.md</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="the-maybe-monad">The Maybe monad</h1>
+<!DOCTYPE html>
 
-<p><a href="https://travis-ci.org/folktale/data.maybe"><img src="https://secure.travis-ci.org/folktale/data.maybe.png?branch=master" alt="Build Status" title="" /></a>
-<a href="http://badge.fury.io/js/data.maybe"><img src="https://badge.fury.io/js/data.maybe.png" alt="NPM version" title="" /></a>
-<a href="https://david-dm.org/folktale/data.maybe"><img src="https://david-dm.org/folktale/data.maybe.png" alt="Dependencies Status" title="" /></a>
-<a href="http://github.com/hughsk/stability-badges"><img src="http://hughsk.github.io/stability-badges/dist/stable.svg" alt="stable" title="" /></a></p>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Data.Maybe Index</title>
 
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	
+	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
+	
+</head>
+
+<body>
+<div class="container-fluid">
+	<div class="navbar navbar-fixed-top ">
+		<div class="navbar-inner">
+			<a class="brand" href="index.html">Data.Maybe</a>
+			<ul class="nav">
+				
+				<li class="dropdown">
+					<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b
+						class="caret"></b></a>
+
+					<ul class="dropdown-menu ">
+						
+						<li>
+							<a href="maybe.html">lib/maybe</a>
+						</li>
+						
+
+					</ul>
+				</li>
+				
+				<li class="dropdown">
+					<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b
+						class="caret"></b></a>
+
+					<ul class="dropdown-menu ">
+						
+						<li>
+							<a href="maybe-Maybe.html">Maybe</a>
+						</li>
+						
+
+					</ul>
+				</li>
+				
+			</ul>
+		</div>
+	</div>
+
+	<div class="row-fluid">
+
+		
+		<div class="span8">
+			
+				<div id="main">
+					
+
+
+	
+	<span class="page-title">Index</span>
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+    <section>
+        <article><h1>The Maybe monad</h1><p><a href="https://travis-ci.org/folktale/data.maybe"><img src="https://secure.travis-ci.org/folktale/data.maybe.png?branch=master" alt="Build Status"></a>
+<a href="http://badge.fury.io/js/data.maybe"><img src="https://badge.fury.io/js/data.maybe.png" alt="NPM version"></a>
+<a href="https://david-dm.org/folktale/data.maybe"><img src="https://david-dm.org/folktale/data.maybe.png" alt="Dependencies Status"></a>
+<a href="http://github.com/hughsk/stability-badges"><img src="http://hughsk.github.io/stability-badges/dist/stable.svg" alt="stable"></a></p>
 <p>A Monad for values that may not be present, or computations that may
 fail. <code>Maybe(a)</code> explicitly models the effects that implicit in <code>Nullable</code>
 types, thus has none of the problems associated with using <code>null</code> or
 <code>undefined</code> — like <code>NullPointerException</code> or <code>TypeError</code>.</p>
-
 <p>Furthermore, being a Monad, <code>Maybe(a)</code> can be composed in manners similar to
 other monads, by using the generic sequencing and composition operations
 provided for the common interface in
 <a href="https://github.com/fantasyland/fantasy-land">Fantasy Land</a>.</p>
-
-<h2 id="example">Example</h2>
-
-<pre><code class="js">var Maybe = require('data.maybe')
+<h2>Example</h2><pre><code class="lang-js">var Maybe = require('data.maybe')
 
 // :: [a], (a -&gt; Bool) -&gt; Maybe(a)
 function find(collection, predicate) {
@@ -52,80 +134,118 @@ a.orElse(function(){ return Maybe.Just(-1) })
 b.orElse(function(){ return Maybe.Just(-1) })
 // =&gt; Maybe.Just(0)
 </code></pre>
-
-<h2 id="installing">Installing</h2>
-
-<p>The easiest way is to grab it from NPM. If you're running in a Browser
-environment, you can use <a href="http://browserify.org/">Browserify</a>:</p>
-
+<h2>Installing</h2><p>The easiest way is to grab it from NPM. If you're running in a Browser
+environment, you can use [Browserify][]:</p>
 <pre><code>$ npm install data.maybe
-</code></pre>
-
-<h3 id="using-with-commonjs">Using with CommonJS</h3>
-
-<p>If you're not using NPM, <a href="https://github.com/folktale/data.maybe/releases/download/v1.0.0/data.maybe-1.0.0.tar.gz">Download the latest release</a>, and require
+</code></pre><h3>Using with CommonJS</h3><p>If you're not using NPM, [Download the latest release][release], and require
 the <code>data.maybe.umd.js</code> file:</p>
-
-<pre><code class="js">var Maybe = require('data.maybe')
+<pre><code class="lang-js">var Maybe = require('data.maybe')
 </code></pre>
-
-<h3 id="using-with-amd">Using with AMD</h3>
-
-<p><a href="https://github.com/folktale/data.maybe/releases/download/v1.0.0/data.maybe-1.0.0.tar.gz">Download the latest release</a>, and require the <code>data.maybe.umd.js</code>
+<h3>Using with AMD</h3><p>[Download the latest release][release], and require the <code>data.maybe.umd.js</code>
 file:</p>
-
-<pre><code class="js">require(['data.maybe'], function(Maybe) {
+<pre><code class="lang-js">require(['data.maybe'], function(Maybe) {
   ( ... )
 })
 </code></pre>
-
-<h3 id="using-without-modules">Using without modules</h3>
-
-<p><a href="https://github.com/folktale/data.maybe/releases/download/v1.0.0/data.maybe-1.0.0.tar.gz">Download the latest release</a>, and load the <code>data.maybe.umd.js</code>
+<h3>Using without modules</h3><p>[Download the latest release][release], and load the <code>data.maybe.umd.js</code>
 file. The properties are exposed in the global <code>folktale.data.Maybe</code> object:</p>
-
-<pre><code class="html">&lt;script src="/path/to/data.maybe.umd.js"&gt;&lt;/script&gt;
+<pre><code class="lang-html">&lt;script src=&quot;/path/to/data.maybe.umd.js&quot;&gt;&lt;/script&gt;
 </code></pre>
-
-<h3 id="compiling-from-source">Compiling from source</h3>
-
-<p>If you want to compile this library from the source, you'll need <a href="http://git-scm.com/">Git</a>,
-<a href="http://www.gnu.org/software/make/">Make</a>, <a href="http://nodejs.org/">Node.js</a>, and run the following commands:</p>
-
+<h3>Compiling from source</h3><p>If you want to compile this library from the source, you'll need [Git][],
+[Make][], [Node.js][], and run the following commands:</p>
 <pre><code>$ git clone git://github.com/folktale/data.maybe.git
 $ cd data.maybe
 $ npm install
 $ make bundle
-</code></pre>
-
-<p>This will generate the <code>dist/data.maybe.umd.js</code> file, which you can load in
+</code></pre><p>This will generate the <code>dist/data.maybe.umd.js</code> file, which you can load in
 any JavaScript environment.</p>
-
-<h2 id="documentation">Documentation</h2>
-
-<p>You can <a href="http://folktale.github.io/data.maybe">read the documentation online</a> or build it yourself:</p>
-
+<h2>Documentation</h2><p>You can [read the documentation online][docs] or build it yourself:</p>
 <pre><code>$ git clone git://github.com/folktale/data.maybe.git
 $ cd data.maybe
 $ npm install
 $ make documentation
-</code></pre>
-
-<p>Then open the file <code>docs/literate/index.html</code> in your browser.</p>
-
-<h2 id="platform-support">Platform support</h2>
-
-<p>This library assumes an ES5 environment, but can be easily supported in ES3
-platforms by the use of shims. Just include <a href="https://github.com/kriskowal/es5-shim">es5-shim</a> :)</p>
-
-<h2 id="licence">Licence</h2>
-
-<p>Copyright (c) 2013 Quildreen Motta.</p>
-
+</code></pre><p>Then open the file <code>docs/literate/index.html</code> in your browser.</p>
+<h2>Platform support</h2><p>This library assumes an ES5 environment, but can be easily supported in ES3
+platforms by the use of shims. Just include [es5-shim][] :)</p>
+<h2>Licence</h2><p>Copyright (c) 2013 Quildreen Motta.</p>
 <p>Released under the <a href="https://github.com/folktale/data.maybe/blob/master/LICENCE">MIT licence</a>.</p>
-
 <!-- links -->
-
+[Fantasy Land]: https://github.com/fantasyland/fantasy-land
+[Browserify]: http://browserify.org/
+[Git]: http://git-scm.com/
+[Make]: http://www.gnu.org/software/make/
+[Node.js]: http://nodejs.org/
+[es5-shim]: https://github.com/kriskowal/es5-shim
+[docs]: http://folktale.github.io/data.maybe
 <!-- [release: https://github.com/folktale/data.maybe/releases/download/v$VERSION/data.maybe-$VERSION.tar.gz] -->
+[release]: https://github.com/folktale/data.maybe/releases/download/v1.0.1/data.maybe-1.0.1.tar.gz
+<!-- [/release] --></article>
+    </section>
 
-<!-- [/release] --></div></div></div></div></body></html>
+
+
+
+
+
+
+				</div>
+
+				<div class="clearfix"></div>
+				<footer>
+					
+					
+		<span class="copyright">
+		© 2014 Quildreen Motta
+		</span>
+					<br />
+					
+		<span class="jsdoc-message">
+		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a>
+		on Sat Apr 05 2014 22:30:29 GMT-0300 (BRT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
+		</span>
+				</footer>
+			</div>
+
+			
+			<div class="span3">
+				<div id="toc"></div>
+			</div>
+			
+			<br clear="both">
+		</div>
+
+	</div>
+	<script src="scripts/sunlight.js"></script>
+	<script src="scripts/sunlight.javascript.js"></script>
+	<script src="scripts/sunlight-plugin.doclinks.js"></script>
+	<script src="scripts/sunlight-plugin.linenumbers.js"></script>
+	<script src="scripts/sunlight-plugin.menu.js"></script>
+	<script src="scripts/jquery.min.js"></script>
+	<script src="scripts/jquery.scrollTo.js"></script>
+	<script src="scripts/jquery.localScroll.js"></script>
+	<script src="scripts/bootstrap-dropdown.js"></script>
+	<script src="scripts/toc.js"></script>
+
+
+	<script>  Sunlight.highlightAll({lineNumbers:true,  showMenu: true, enableDoclinks :true}); </script>
+
+	<script>
+		$( function () {
+			$( "#toc" ).toc( {
+			    anchorName  : function(i, heading, prefix) {
+					return $(heading).attr("id") || ( prefix + i );
+				},
+				selectors   : "h1,h2,h3,h4",
+				showAndHide : false,
+				scrollTo    : 60
+			} );
+			$( "#toc>ul" ).addClass( "nav nav-pills nav-stacked" );
+			$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+
+		} );
+	</script>
+
+	
+
+</body>
+</html>
