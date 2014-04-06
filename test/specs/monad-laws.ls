@@ -28,7 +28,7 @@
 # to verify.
 spec = (require 'hifive')!
 laws = require 'laws'
-Maybe = require '../../src/'
+Maybe = require '../../lib/'
 
 # And to use the laws, we need to provide a constructor function, that
 # given a single argument will return a new data structure containing

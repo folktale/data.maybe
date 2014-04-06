@@ -25,7 +25,7 @@
 
 spec = (require 'hifive')!
 {for-all, data: { Any, Int }} = require 'claire'
-Maybe = require '../../src/'
+Maybe = require '../../lib/'
 {ok, throws} = require 'assert'
 
 id = (a) -> a
