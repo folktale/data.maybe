@@ -1,7 +1,7 @@
 {
   "name": "data.maybe",
   "version": "1.0.2",
-  "description": "A monad for values that may not be available or computations that may fail.",
+  "description": "A structure for values that may not be available or computations that may fail.",
   "main": "lib/index.js",
   "scripts": {
     "test": "make test"

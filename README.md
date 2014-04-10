@@ -1,5 +1,5 @@
-The Maybe monad
-===============
+Data.Maybe
+==========
 
 [![Build Status](https://secure.travis-ci.org/folktale/data.maybe.png?branch=master)](https://travis-ci.org/folktale/data.maybe)
 [![NPM version](https://badge.fury.io/js/data.maybe.png)](http://badge.fury.io/js/data.maybe)
@@ -7,7 +7,7 @@ The Maybe monad
 [![stable](http://hughsk.github.io/stability-badges/dist/stable.svg)](http://github.com/hughsk/stability-badges)
 
 
-A Monad for values that may not be present, or computations that may
+A structure for values that may not be present, or computations that may
 fail. `Maybe(a)` explicitly models the effects that implicit in `Nullable`
 types, thus has none of the problems associated with using `null` or
 `undefined` — like `NullPointerException` or `TypeError`.
