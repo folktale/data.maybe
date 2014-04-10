@@ -90,7 +90,7 @@
     
     
     <div class="description">
-        <p>A Monad for values that may not be present, or computations that may
+        <p>A structure for values that may not be present, or computations that may
 fail. <code>Maybe(a)</code> explicitly models the effects that are implicit in
 <code>Nullable</code> types, thus has none of the problems associated with
 <code>null</code> or <code>undefined</code> — like <code>NullPointerExceptions</code>.</p>
@@ -103,7 +103,7 @@ fail. <code>Maybe(a)</code> explicitly models the effects that are implicit in
  failure that needs no additional information.</p>
 </li>
 </ul>
-<p>Common uses of this monad includes modelling values that may or may
+<p>Common uses of this structure includes modelling values that may or may
 not be present in a collection, thus instead of needing a
 <code>collection.has(a)</code>, the <code>collection.get(a)</code> operation gives you all
 the information you need — <code>collection.get(a).is-nothing</code> being
@@ -117,8 +117,8 @@ sequencing operations that may fail, and safely composing values that
 you don't know whether they're present or not, failing early
 (returning a <code>Nothing</code>) if any of the operations fail.</p>
 <p>If one wants to store additional information about failures, the
-<a href="https://github.com/folktale/data.either">Either</a> and <a href="https://github.com/folktale/data.validation">Validation</a> monads provide such a capability, and
-should be used instead of the <code>Maybe(a)</code> monad.</p>
+<a href="https://github.com/folktale/data.either">Either</a> and <a href="https://github.com/folktale/data.validation">Validation</a> structures provide such a capability, and
+should be used instead of the <code>Maybe(a)</code> structure.</p>
     </div>
     
 
@@ -204,7 +204,7 @@ should be used instead of the <code>Maybe(a)</code> monad.</p>
 <dd>
     
     <div class="description">
-        <p>True if the <code>Maybe[α]</code> monad contains a single value (i.e.: <code>Just(α)</code>).</p>
+        <p>True if the <code>Maybe[α]</code> structure contains a single value (i.e.: <code>Just(α)</code>).</p>
     </div>
     
     
@@ -260,7 +260,7 @@ should be used instead of the <code>Maybe(a)</code> monad.</p>
 <dd>
     
     <div class="description">
-        <p>True if the <code>Maybe[α]</code> monad contains a failure (i.e.: <code>Nothing</code>).</p>
+        <p>True if the <code>Maybe[α]</code> structure contains a failure (i.e.: <code>Nothing</code>).</p>
     </div>
     
     
@@ -323,7 +323,7 @@ should be used instead of the <code>Maybe(a)</code> monad.</p>
     
     
     <div class="description">
-        <p>Constructs a new <code>Maybe[β]</code> monad from an <code>Either[α, β]</code> type.</p>
+        <p>Constructs a new <code>Maybe[β]</code> structure from an <code>Either[α, β]</code> type.</p>
 <p>The left side of the <code>Either</code> becomes <code>Nothing</code>, and the right side
 is wrapped in a <code>Just(β)</code>.</p>
     </div>
@@ -396,7 +396,7 @@ is wrapped in a <code>Just(β)</code>.</p>
     
     
     <div class="description">
-        <p>Constructs a new <code>Maybe[α]</code> monad from a nullable type.</p>
+        <p>Constructs a new <code>Maybe[α]</code> structure from a nullable type.</p>
 <p>If the value is either <code>null</code> or <code>undefined</code>, this function returns a
 <code>Nothing</code>, otherwise the value is wrapped in a <code>Just(α)</code>.</p>
     </div>
@@ -469,7 +469,7 @@ is wrapped in a <code>Just(β)</code>.</p>
     
     
     <div class="description">
-        <p>Constructs a new <code>Maybe[β]</code> monad from a <code>Validation[α, β]</code> type.</p>
+        <p>Constructs a new <code>Maybe[β]</code> structure from a <code>Validation[α, β]</code> type.</p>
 <p>The failure side of the <code>Validation</code> becomes <code>Nothing</code>, and the right
 side is wrapped in a <code>Just(β)</code>.</p>
     </div>
@@ -542,10 +542,10 @@ side is wrapped in a <code>Just(β)</code>.</p>
     
     
     <div class="description">
-        <p>Constructs a new <code>Maybe[α]</code> monad that holds the single value
+        <p>Constructs a new <code>Maybe[α]</code> structure that holds the single value
 <code>α</code>. Commonly used to represent a success.</p>
 <p><code>α</code> can be any value, including <code>null</code>, <code>undefined</code> or another
-<code>Maybe[α]</code> monad.</p>
+<code>Maybe[α]</code> structure.</p>
     </div>
     
 
@@ -616,7 +616,7 @@ side is wrapped in a <code>Just(β)</code>.</p>
     
     
     <div class="description">
-        <p>Constructs a new <code>Maybe[α]</code> monad with an absent value. Commonly used
+        <p>Constructs a new <code>Maybe[α]</code> structure with an absent value. Commonly used
 to represent a failure.</p>
     </div>
     
@@ -688,9 +688,9 @@ to represent a failure.</p>
     
     
     <div class="description">
-        <p>Creates a new <code>Maybe[α]</code> monad holding the single value <code>α</code>.</p>
+        <p>Creates a new <code>Maybe[α]</code> structure holding the single value <code>α</code>.</p>
 <p><code>α</code> can be any value, including <code>null</code>, <code>undefined</code>, or another
-<code>Maybe[α]</code> monad.</p>
+<code>Maybe[α]</code> structure.</p>
     </div>
     
 
@@ -761,9 +761,9 @@ to represent a failure.</p>
     
     
     <div class="description">
-        <p>Applies the function inside the <code>Maybe[α]</code> monad to another
+        <p>Applies the function inside the <code>Maybe[α]</code> structure to another
 applicative type.</p>
-<p>The <code>Maybe[α]</code> monad should contain a function value, otherwise a
+<p>The <code>Maybe[α]</code> structure should contain a function value, otherwise a
 <code>TypeError</code> is thrown.</p>
     </div>
     
@@ -828,15 +828,15 @@ applicative type.</p>
     <h4 class="name" id="chain"><span class="type-signature"></span>chain<span class="signature">()</span><span class="type-signature"></span></h4>
     
     
-    <p class="summary">@Maybe[α] => (α → Maybe[β]) → Maybe[β]</p>
+    <p class="summary">(@Maybe[α], m:Monad[_]) => (α → m[β]) → m[β]</p>
     
 </dt>
 <dd>
     
     
     <div class="description">
-        <p>Transforms the value of the <code>Maybe[α]</code> monad using an unary function
-to a monad of the same type.</p>
+        <p>Transforms the value of the <code>Maybe[α]</code> structure using an unary function
+to monads.</p>
     </div>
     
 
@@ -869,7 +869,7 @@ to a monad of the same type.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="maybe.js.html">lib/maybe.js</a>, <a href="maybe.js.html#sunlight-1-line-241">line 241</a>
+        <a href="maybe.js.html">lib/maybe.js</a>, <a href="maybe.js.html#sunlight-1-line-239">line 239</a>
     </li></ul></dd>
     
 
@@ -907,7 +907,7 @@ to a monad of the same type.</p>
     
     
     <div class="description">
-        <p>Extracts the value out of the <code>Maybe[α]</code> monad, if it
+        <p>Extracts the value out of the <code>Maybe[α]</code> structure, if it
 exists. Otherwise throws a <code>TypeError</code>.</p>
     </div>
     
@@ -941,7 +941,7 @@ exists. Otherwise throws a <code>TypeError</code>.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="maybe.js.html">lib/maybe.js</a>, <a href="maybe.js.html#sunlight-1-line-299">line 299</a>
+        <a href="maybe.js.html">lib/maybe.js</a>, <a href="maybe.js.html#sunlight-1-line-297">line 297</a>
     </li></ul></dd>
     
 
@@ -974,7 +974,7 @@ exists. Otherwise throws a <code>TypeError</code>.</p>
 <dl>
     <dt>
         <div class="param-desc">
-        if the monad has no value (`Nothing`).
+        if the structure has no value (`Nothing`).
         </div>
     </dt>
     <dt>
@@ -1013,7 +1013,7 @@ exists. Otherwise throws a <code>TypeError</code>.</p>
     
     
     <div class="description">
-        <p>Extracts the value out of the <code>Maybe[α]</code> monad. If there is no value,
+        <p>Extracts the value out of the <code>Maybe[α]</code> structure. If there is no value,
 returns the given default.</p>
     </div>
     
@@ -1047,7 +1047,7 @@ returns the given default.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="maybe.js.html">lib/maybe.js</a>, <a href="maybe.js.html#sunlight-1-line-317">line 317</a>
+        <a href="maybe.js.html">lib/maybe.js</a>, <a href="maybe.js.html#sunlight-1-line-315">line 315</a>
     </li></ul></dd>
     
 
@@ -1085,7 +1085,7 @@ returns the given default.</p>
     
     
     <div class="description">
-        <p>Tests if a <code>Maybe[α]</code> monad is equal to another <code>Maybe[α]</code> monad.</p>
+        <p>Tests if a <code>Maybe[α]</code> structure is equal to another <code>Maybe[α]</code> structure.</p>
     </div>
     
 
@@ -1118,7 +1118,7 @@ returns the given default.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="maybe.js.html">lib/maybe.js</a>, <a href="maybe.js.html#sunlight-1-line-276">line 276</a>
+        <a href="maybe.js.html">lib/maybe.js</a>, <a href="maybe.js.html#sunlight-1-line-274">line 274</a>
     </li></ul></dd>
     
 
@@ -1156,7 +1156,7 @@ returns the given default.</p>
     
     
     <div class="description">
-        <p>Transforms the value of the <code>Maybe[α]</code> monad using a regular unary
+        <p>Transforms the value of the <code>Maybe[α]</code> structure using a regular unary
 function.</p>
     </div>
     
@@ -1190,7 +1190,7 @@ function.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="maybe.js.html">lib/maybe.js</a>, <a href="maybe.js.html#sunlight-1-line-224">line 224</a>
+        <a href="maybe.js.html">lib/maybe.js</a>, <a href="maybe.js.html#sunlight-1-line-222">line 222</a>
     </li></ul></dd>
     
 
@@ -1228,8 +1228,8 @@ function.</p>
     
     
     <div class="description">
-        <p>Transforms a failure into a new <code>Maybe[α]</code> monad. Does nothing if the
-monad already contains a value.</p>
+        <p>Transforms a failure into a new <code>Maybe[α]</code> structure. Does nothing if the
+structure already contains a value.</p>
     </div>
     
 
@@ -1262,7 +1262,7 @@ monad already contains a value.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="maybe.js.html">lib/maybe.js</a>, <a href="maybe.js.html#sunlight-1-line-335">line 335</a>
+        <a href="maybe.js.html">lib/maybe.js</a>, <a href="maybe.js.html#sunlight-1-line-333">line 333</a>
     </li></ul></dd>
     
 
@@ -1300,7 +1300,7 @@ monad already contains a value.</p>
     
     
     <div class="description">
-        <p>Returns a textual representation of the <code>Maybe[α]</code> monad.</p>
+        <p>Returns a textual representation of the <code>Maybe[α]</code> structure.</p>
     </div>
     
 
@@ -1333,7 +1333,7 @@ monad already contains a value.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="maybe.js.html">lib/maybe.js</a>, <a href="maybe.js.html#sunlight-1-line-257">line 257</a>
+        <a href="maybe.js.html">lib/maybe.js</a>, <a href="maybe.js.html#sunlight-1-line-255">line 255</a>
     </li></ul></dd>
     
 
@@ -1384,7 +1384,7 @@ monad already contains a value.</p>
 					
 		<span class="jsdoc-message">
 		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a>
-		on Sat Apr 05 2014 22:30:29 GMT-0300 (BRT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
+		on Thu Apr 10 2014 12:56:44 GMT-0300 (BRT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 		</span>
 				</footer>
 			</div>

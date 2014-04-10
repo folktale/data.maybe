@@ -101,7 +101,7 @@ var noop          = function(){ return this                         }
 // -- Implementation ---------------------------------------------------
 
 /**
- * A Monad for values that may not be present, or computations that may
+ * A structure for values that may not be present, or computations that may
  * fail. `Maybe(a)` explicitly models the effects that are implicit in
  * `Nullable` types, thus has none of the problems associated with
  * `null` or `undefined` — like `NullPointerExceptions`.
@@ -114,7 +114,7 @@ var noop          = function(){ return this                         }
  *  + `Nothing` — represents a `Maybe(a)` that has no values. Or a
  *     failure that needs no additional information.
  *
- * Common uses of this monad includes modelling values that may or may
+ * Common uses of this structure includes modelling values that may or may
  * not be present in a collection, thus instead of needing a
  * `collection.has(a)`, the `collection.get(a)` operation gives you all
  * the information you need — `collection.get(a).is-nothing` being
@@ -130,8 +130,8 @@ var noop          = function(){ return this                         }
  * (returning a `Nothing`) if any of the operations fail.
  *
  * If one wants to store additional information about failures, the
- * [Either][] and [Validation][] monads provide such a capability, and
- * should be used instead of the `Maybe(a)` monad.
+ * [Either][] and [Validation][] structures provide such a capability, and
+ * should be used instead of the `Maybe(a)` structure.
  *
  * [Either]: https://github.com/folktale/data.either
  * [Validation]: https://github.com/folktale/data.validation
@@ -155,7 +155,7 @@ function Nothing(){}
 // -- Constructors -----------------------------------------------------
 
 /**
- * Constructs a new `Maybe[α]` monad with an absent value. Commonly used
+ * Constructs a new `Maybe[α]` structure with an absent value. Commonly used
  * to represent a failure.
  *
  * @summary Void → Maybe[α]
@@ -166,11 +166,11 @@ Maybe.Nothing = function() {
 Maybe.prototype.Nothing = Maybe.Nothing
 
 /**
- * Constructs a new `Maybe[α]` monad that holds the single value
+ * Constructs a new `Maybe[α]` structure that holds the single value
  * `α`. Commonly used to represent a success.
  *
  * `α` can be any value, including `null`, `undefined` or another
- * `Maybe[α]` monad.
+ * `Maybe[α]` structure.
  *
  * @summary α → Maybe[α]
  */
@@ -183,7 +183,7 @@ Maybe.prototype.Just = Maybe.Just
 // -- Conversions ------------------------------------------------------
 
 /**
- * Constructs a new `Maybe[α]` monad from a nullable type.
+ * Constructs a new `Maybe[α]` structure from a nullable type.
  *
  * If the value is either `null` or `undefined`, this function returns a
  * `Nothing`, otherwise the value is wrapped in a `Just(α)`.
@@ -197,7 +197,7 @@ Maybe.fromNullable = function(a) {
 Maybe.prototype.fromNullable = Maybe.fromNullable
 
 /**
- * Constructs a new `Maybe[β]` monad from an `Either[α, β]` type.
+ * Constructs a new `Maybe[β]` structure from an `Either[α, β]` type.
  *
  * The left side of the `Either` becomes `Nothing`, and the right side
  * is wrapped in a `Just(β)`.
@@ -210,7 +210,7 @@ Maybe.fromEither = function(a) {
 Maybe.prototype.fromEither = Maybe.fromEither
 
 /**
- * Constructs a new `Maybe[β]` monad from a `Validation[α, β]` type.
+ * Constructs a new `Maybe[β]` structure from a `Validation[α, β]` type.
  *
  * The failure side of the `Validation` becomes `Nothing`, and the right
  * side is wrapped in a `Just(β)`.
@@ -225,7 +225,7 @@ Maybe.prototype.fromValidation = Maybe.fromEither
 // -- Predicates -------------------------------------------------------
 
 /**
- * True if the `Maybe[α]` monad contains a failure (i.e.: `Nothing`).
+ * True if the `Maybe[α]` structure contains a failure (i.e.: `Nothing`).
  *
  * @summary Boolean
  */
@@ -234,7 +234,7 @@ Nothing.prototype.isNothing = true
 
 
 /**
- * True if the `Maybe[α]` monad contains a single value (i.e.: `Just(α)`).
+ * True if the `Maybe[α]` structure contains a single value (i.e.: `Just(α)`).
  *
  * @summary Boolean
  */
@@ -245,10 +245,10 @@ Just.prototype.isJust  = true
 // -- Applicative ------------------------------------------------------
 
 /**
- * Creates a new `Maybe[α]` monad holding the single value `α`.
+ * Creates a new `Maybe[α]` structure holding the single value `α`.
  *
  * `α` can be any value, including `null`, `undefined`, or another
- * `Maybe[α]` monad.
+ * `Maybe[α]` structure.
  *
  * @summary α → Maybe[α]
  */
@@ -259,10 +259,10 @@ Maybe.prototype.of = Maybe.of
 
 
 /**
- * Applies the function inside the `Maybe[α]` monad to another
+ * Applies the function inside the `Maybe[α]` structure to another
  * applicative type.
  *
- * The `Maybe[α]` monad should contain a function value, otherwise a
+ * The `Maybe[α]` structure should contain a function value, otherwise a
  * `TypeError` is thrown.
  *
  * @method
@@ -270,9 +270,7 @@ Maybe.prototype.of = Maybe.of
  */
 Maybe.prototype.ap = unimplemented
 
-Nothing.prototype.ap = function(b) {
-  return b
-}
+Nothing.prototype.ap = noop
 
 Just.prototype.ap = function(b) {
   return b.map(this.value)
@@ -284,7 +282,7 @@ Just.prototype.ap = function(b) {
 // -- Functor ----------------------------------------------------------
 
 /**
- * Transforms the value of the `Maybe[α]` monad using a regular unary
+ * Transforms the value of the `Maybe[α]` structure using a regular unary
  * function.
  *
  * @method
@@ -301,11 +299,11 @@ Just.prototype.map = function(f) {
 // -- Chain ------------------------------------------------------------
 
 /**
- * Transforms the value of the `Maybe[α]` monad using an unary function
- * to a monad of the same type.
+ * Transforms the value of the `Maybe[α]` structure using an unary function
+ * to monads.
  *
  * @method
- * @summary @Maybe[α] => (α → Maybe[β]) → Maybe[β]
+ * @summary (@Maybe[α], m:Monad[_]) => (α → m[β]) → m[β]
  */
 Maybe.prototype.chain   = unimplemented
 Nothing.prototype.chain = noop
@@ -318,7 +316,7 @@ Just.prototype.chain = function(f) {
 // -- Show -------------------------------------------------------------
 
 /**
- * Returns a textual representation of the `Maybe[α]` monad.
+ * Returns a textual representation of the `Maybe[α]` structure.
  *
  * @method
  * @summary @Maybe[α] => Void → String
@@ -337,7 +335,7 @@ Just.prototype.toString = function() {
 // -- Eq ---------------------------------------------------------------
 
 /**
- * Tests if a `Maybe[α]` monad is equal to another `Maybe[α]` monad.
+ * Tests if a `Maybe[α]` structure is equal to another `Maybe[α]` structure.
  *
  * @method
  * @summary @Maybe[α] => Maybe[α] → Boolean
@@ -357,13 +355,13 @@ Just.prototype.isEqual = function(b) {
 // -- Extracting and recovering ----------------------------------------
 
 /**
- * Extracts the value out of the `Maybe[α]` monad, if it
+ * Extracts the value out of the `Maybe[α]` structure, if it
  * exists. Otherwise throws a `TypeError`.
  *
  * @method
  * @summary @Maybe[α] => Void → a,      :: partial, throws
  * @see {@link module:lib/maybe~Maybe#getOrElse} — A getter that can handle failures
- * @throws {TypeError} if the monad has no value (`Nothing`).
+ * @throws {TypeError} if the structure has no value (`Nothing`).
  */
 Maybe.prototype.get = unimplemented
 
@@ -377,7 +375,7 @@ Just.prototype.get = function() {
 
 
 /**
- * Extracts the value out of the `Maybe[α]` monad. If there is no value,
+ * Extracts the value out of the `Maybe[α]` structure. If there is no value,
  * returns the given default.
  *
  * @method
@@ -395,8 +393,8 @@ Just.prototype.getOrElse = function(_) {
 
 
 /**
- * Transforms a failure into a new `Maybe[α]` monad. Does nothing if the
- * monad already contains a value.
+ * Transforms a failure into a new `Maybe[α]` structure. Does nothing if the
+ * structure already contains a value.
  *
  * @method
  * @summary @Maybe[α] => (Void → Maybe[α]) → Maybe[α]
@@ -409,7 +407,8 @@ Nothing.prototype.orElse = function(f) {
 
 Just.prototype.orElse = function(_) {
   return this
-}</pre>
+}
+</pre>
         </article>
     </section>
 
@@ -430,7 +429,7 @@ Just.prototype.orElse = function(_) {
 					
 		<span class="jsdoc-message">
 		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a>
-		on Sat Apr 05 2014 22:30:29 GMT-0300 (BRT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
+		on Thu Apr 10 2014 12:56:44 GMT-0300 (BRT) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 		</span>
 				</footer>
 			</div>
