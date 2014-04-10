@@ -121,7 +121,7 @@ You can [read the documentation online][docs] or build it yourself:
     $ npm install
     $ make documentation
 
-Then open the file `docs/literate/index.html` in your browser.
+Then open the file `docs/index.html` in your browser.
 
 
 ## Platform support
