@@ -1,6 +1,6 @@
 {
   "name": "data.maybe",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "A structure for values that may not be available or computations that may fail.",
   "main": "lib/index.js",
   "scripts": {
