@@ -24,12 +24,13 @@
  */
 
 spec = (require 'hifive')!
-{for-all, data: { Any, Int }} = require 'claire'
+{for-all, data: { Any:BigAny, Int }, sized} = require 'claire'
 Maybe = require '../../lib/'
 {ok, throws} = require 'assert'
 
 id = (a) -> a
 
+Any = sized (-> 10), BigAny
 {Just, Nothing} = Maybe
 
 
@@ -71,6 +72,10 @@ module.exports = spec 'Maybe', (o, spec) ->
        for-all(Any).satisfy (a) ->
          Nothing!.or-else(-> a) is a
        .as-test!
+    o 'cata should invoke the Nothing function' do
+       for-all(Any, Any).satisfy (a, b) ->
+         Nothing!.cata(Nothing: (-> a), Just: (-> b)) is a
+       .as-test!
        
   spec 'Justs' (o) ->
     o 'toString' do
@@ -92,4 +97,8 @@ module.exports = spec 'Maybe', (o, spec) ->
     o 'or-else should return the monad' do
        for-all(Any).satisfy (a) ->
          Just(a).or-else(-> Nothing!).is-equal Just(a)
+       .as-test!
+    o 'cata should invoke the Just function' do
+       for-all(Any, Any).satisfy (a, b) ->
+         Just(a).cata(Nothing: (-> b), Just: (x) -> x) is a
        .as-test!
