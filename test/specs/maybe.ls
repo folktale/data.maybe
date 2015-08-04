@@ -49,7 +49,7 @@ module.exports = spec 'Maybe', (o, spec) ->
   spec 'Nothings' (o) ->
     o 'ap should propagate' do
        for-all(Any).satisfy (a) ->
-         Nothing!.ap(Just a).is-equal Just(a)
+         Nothing!.ap(Just a).is-nothing 
        .as-test!
     o 'map should propagate' ->
        ok Nothing!.map(id).is-nothing
