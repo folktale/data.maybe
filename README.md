@@ -21,20 +21,20 @@ provided for the common interface in
 ## Example
 
 ```js
-var Maybe = require('data.maybe')
+const Maybe = require('data.maybe')
 
 // :: [a], (a -> Bool) -> Maybe(a)
 function find(collection, predicate) {
-  for (var i = 0; i < collection.length; ++i) {
-    var item = collection[i]
+  for (let i = 0; i < collection.length; ++i) {
+    const item = collection[i]
     if (predicate(item))  return Maybe.Just(item)
   }
   return Maybe.Nothing()
 }
 
-var numbers = [-2, -1, 0, 1, 2]
-var a = find(numbers, function(a){ return a > 5 })
-var b = find(numbers, function(a){ return a === 0 })
+const numbers = [-2, -1, 0, 1, 2]
+const a = find(numbers, function(a){ return a > 5 })
+const b = find(numbers, function(a){ return a === 0 })
 
 // Call a function only if both a and b
 // have values (sequencing)
@@ -62,9 +62,9 @@ b.orElse(function(){ return Maybe.Just(-1) })
 
 The easiest way is to grab it from NPM. If you're running in a Browser
 environment, you can use [Browserify][]:
-
-    $ npm install data.maybe
-
+```bash
+npm install data.maybe
+```
 
 ### Using with CommonJS
 
@@ -72,7 +72,7 @@ If you're not using NPM, [Download the latest release][release], and require
 the `data.maybe.umd.js` file:
 
 ```js
-var Maybe = require('data.maybe')
+const Maybe = require('data.maybe')
 ```
 
 
