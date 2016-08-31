@@ -68,9 +68,9 @@ module.exports = spec 'Maybe', (o, spec) ->
        for-all(Any).satisfy (a) ->
          Nothing!.get-or-else(a) is a
        .as-test!
-    o 'or-else should call the thunk' do
+    o 'or-else should return a monad of thunk return value' do
        for-all(Any).satisfy (a) ->
-         Nothing!.or-else(-> a) is a
+         Nothing!.or-else(-> a).is-equal Maybe.fromNullable(a)
        .as-test!
     o 'cata should invoke the Nothing function' do
        for-all(Any, Any).satisfy (a, b) ->
