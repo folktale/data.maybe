@@ -143,7 +143,7 @@ Released under the [MIT licence](https://github.com/folktale/data.maybe/blob/mas
 [Make]: http://www.gnu.org/software/make/
 [Node.js]: http://nodejs.org/
 [es5-shim]: https://github.com/kriskowal/es5-shim
-[docs]: http://docs.folktalejs.org/en/latest/api/data/maybe/
+[docs]: http://folktalegithubio.readthedocs.io/en/latest/api/data/maybe/index.html
 <!-- [release: https://github.com/folktale/data.maybe/releases/download/v$VERSION/data.maybe-$VERSION.tar.gz] -->
 [release]: https://github.com/folktale/data.maybe/releases/download/v1.2.1/data.maybe-1.2.1.tar.gz
 <!-- [/release] -->
