@@ -28,7 +28,7 @@
     "LiveScript": "~1.2.0",
     "hifive-tap": "~0.1.0",
     "hifive": "~0.1.0",
-    "uglify-js": "~2.4.3",
+    "uglify-js": "~3.6.8",
     "laws": "~0.2.0",
     "claire": "~0.4.1",
     "ink-docstrap": "git://github.com/robotlolita/docstrap",
